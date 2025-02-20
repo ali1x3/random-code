@@ -1,0 +1,4 @@
+list of commands:
+
+add   -  adds an accounts to the manager, requires a username and a password input in that order
+uname   -  updates 
