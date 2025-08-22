@@ -1,2 +1,3 @@
 rust_code/get-dependencies
+rust_code/*/target
 
