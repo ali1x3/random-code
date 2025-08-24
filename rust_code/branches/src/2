@@ -27,40 +27,10 @@ fn main() {
 
     // loops can also be named
     // loops can return values after the break keyword
-
     'outerloop: loop {
         println!("this does not end until the break keyword is used");
-        break 5;
-    };
-
-    let mut counter = 0;
-    let result = loop {
-        counter += 1;
-
-        if counter == 10 {
-            break counter * 2;
+        loop {
+            break 5;
         }
-    };
-
-    //while loops the same with most other languages
-    
-    let mut y = 0;
-    while y < 5 {
-        println!("y is {y}");
-        y += 1;
     }
-
-    //for loops can come in for each (just like in java)
-
-    let arr = [1, 2, 3, 4];
-    for number in arr {
-        println!("the number is {number}");
-    }
-
-    // we can also use ranges
-    // we can also reverse the range using rev()
-    for number in (1..10).rev() {
-        println!("counting {number}");
-    }
-
 }
