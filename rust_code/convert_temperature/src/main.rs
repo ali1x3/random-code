@@ -1,9 +1,13 @@
 use std::io;
 
-const FAHRENHEIHT: u8 = 1;
-const CELSIUS: u8 = 2;
 const SUCCESS: bool = true;
 const FAILURE: bool = false;
+
+enum TemperatureScale{
+    Fahrenheit,
+    Celsius,
+    Invalid
+}
 
 fn main() {
 
@@ -18,20 +22,20 @@ fn main() {
     println!("the input is {input}");
 
     let result = match choice {
-        FAHRENHEIHT => (input - 32.0) * (5.0/9.0),
-        CELSIUS => (input * 9.0 / 5.0) + 32.0,
-        _ => {
+        TemperatureScale::Fahrenheit => (input - 32.0) * (5.0/9.0),
+        TemperatureScale::Celsius => (input * 9.0 / 5.0) + 32.0,
+        TemperatureScale::Invalid => {
             println!("how in the fuck did you get here");
             println!("terminating program");
             return;
         }
     };
 
-    println!("the converted temperature is {result}");
+    println!("the converted temperature is {:.2}", result);
 }
 
 
-fn temperature_to_convert() -> (u8, bool){
+fn temperature_to_convert() -> (TemperatureScale, bool){
     println!("Choose which temperature to convert");
     println!("input 1 to convert from fahrenheit to celsius");
     println!("input 2 to convert from celsius to fahrenheit");
@@ -40,16 +44,16 @@ fn temperature_to_convert() -> (u8, bool){
         .read_line(&mut choice)
         .expect("Failed to read line");
 
-    let choice: (u8, bool) = match choice.trim().parse(){
-        Ok(1) => (FAHRENHEIHT, SUCCESS),
-        Ok(2) => (CELSIUS, SUCCESS),
+    let choice: (TemperatureScale, bool) = match choice.trim().parse(){
+        Ok(1) => (TemperatureScale::Fahrenheit, SUCCESS),
+        Ok(2) => (TemperatureScale::Celsius, SUCCESS),
         Ok(_num) => {
             println!("please input 1 or 2");
-            (0, FAILURE)
+            (TemperatureScale::Invalid, FAILURE)
         },
         Err(_) => {
             println!("please input 1 or 2");
-            (0, FAILURE)
+            (TemperatureScale::Invalid, FAILURE)
         },
     };
 
