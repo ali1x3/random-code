@@ -6,7 +6,7 @@ fn main() {
     let mut input = String::new();
     match io::stdin().read_line(&mut input) {
         Ok(_num) => println!("the read input is {}", input),
-        Err(e) => println!("an error has occured: {}", e),
+        Err(e) => eprintln!("an error has occured: {}", e),
     }
 
     let input: u8 = match input.trim().parse() {
